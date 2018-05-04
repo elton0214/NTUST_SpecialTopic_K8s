@@ -39,7 +39,7 @@ spec:
       volumes:
       - name: git-volume
         gitRepo:
-          repository: "https://github.com/elton0214/7node_myVolume.git"
+          repository: "https://github.com/elton0214/myVolume2.git"
 
 
 
