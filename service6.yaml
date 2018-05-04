@@ -1,0 +1,24 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    node: node6
+  name: nodesvc6
+spec:
+  selector:
+    node: node6
+  ports:
+  - name: ipc
+    port: 21005
+    targetPort: 21005
+  - name: raftport
+    port: 50406
+    targetPort: 50406
+  - name: rpcport
+    port: 22005
+    targetPort: 22005
+  - name: geth
+    port: 9006
+    targetPort: 9006
+  type: LoadBalancer
+

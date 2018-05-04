@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    node: node7
+  name: nodesvc7
+spec:
+  selector:
+    node: node7
+  ports:
+  - name: ipc
+    port: 21006
+    targetPort: 21006
+  - name: raftport
+    port: 50407
+    targetPort: 50407
+  - name: rpcport
+    port: 22006
+    targetPort: 22006
+  - name: geth
+    port: 9007
+    targetPort: 9007
+  type: LoadBalancer

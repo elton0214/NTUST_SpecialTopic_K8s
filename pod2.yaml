@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node2
+  labels:
+    app: 7node
+    node: node2
+spec:
+  nodeSelector:
+    node: node2
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 7node
+  template:
+    metadata:
+      labels:
+        app: 7node
+        node: node2
+    spec:
+      containers:
+      - name: 7node
+        image: markpengisme/k8s:quorum
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
+        ports:
+        - name: raftport
+          containerPort: 50402
+        - name: rpcport
+          containerPort: 22001
+        - name: ipc
+          containerPort: 21001
+        - name: geth
+          containerPort: 9002
+        volumeMounts:
+        - mountPath: /quorum
+          name: git-volume
+
+      volumes:
+      - name: git-volume
+        gitRepo:
+          repository: "https://github.com/elton0214/7node_myVolume.git"
+
+
+

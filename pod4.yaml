@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node4
+  labels:
+    app: 7node
+    node: node4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 7node
+  template:
+    metadata:
+      labels:
+        app: 7node
+        node: node4
+    spec:
+      containers:
+      - name: 7node
+        image: markpengisme/k8s:quorum
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
+        ports:
+        - name: raftport
+          containerPort: 50404
+        - name: rpcport
+          containerPort: 22003
+        - name: ipc
+          containerPort: 21003
+        - name: geth
+          containerPort: 9004
+        volumeMounts:
+        - mountPath: /quorum
+          name: git-volume
+
+      volumes:
+      - name: git-volume
+        gitRepo:
+          repository: "https://github.com/ArnoldQIU/Docker.git"

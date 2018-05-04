@@ -1,0 +1,24 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    node: node4
+  name: nodesvc4
+spec:
+  selector:
+    node: node4
+  ports:
+  - name: ipc
+    port: 21003
+    targetPort: 21003
+  - name: raftport
+    port: 50404
+    targetPort: 50404
+  - name: rpcport
+    port: 22003
+    targetPort: 22003
+  - name: geth
+    port: 9004
+    targetPort: 9004
+  type: LoadBalancer
+

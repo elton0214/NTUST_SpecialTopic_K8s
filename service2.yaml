@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    node: node2
+  name: nodesvc2
+spec:
+  selector:
+    node: node2
+  ports:
+  - name: discovery
+    port: 21001
+    targetPort: 21001
+  - name: raftport
+    port: 50402
+    targetPort: 50402
+  - name: rpcport
+    port: 22001
+    targetPort: 22001
+  - name: get
+    port: 9002
+    targetPort: 9002
+  type: LoadBalancer
